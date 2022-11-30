@@ -1,0 +1,29 @@
+genotype_key: 0
+
+feature:
+  {
+    0: {
+        type: input,
+        oe: -1,
+    },
+    -1: {
+        type: output,
+        cm: avg,
+    },
+  }
+
+classifier:
+  {
+    0: {
+        type: input,
+        oe: -1,
+    },
+    -1: {
+        type: output,
+        cm: [linear, 10],
+    },
+  }
+
+fitness: 0.01
+final_fitness: 0.0
+fitness_history: []

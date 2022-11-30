@@ -1,0 +1,31 @@
+genotype_key: 0
+
+generator:
+  {
+    0: {
+        type: input,
+        oe: -1,
+    },
+    -1: {
+        type: output,
+        cm: [convtran],
+        am: [tanh]
+    },
+  }
+
+discriminator:
+  {
+    0: {
+        type: input,
+        oe: -1,
+    },
+    -1: {
+        type: output,
+        cm: [conv],
+        am: [sigmoid]
+    },
+  }
+
+fitness: 0.01
+final_fitness: 0.0
+fitness_history: []

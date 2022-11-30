@@ -1,0 +1,21 @@
+genotype_key: 0
+
+encoder:
+  {
+    0: {
+        type: conv,
+        oe: -1,
+        cm: [conv, [16, 1, 1, 0]],
+        am: [leakyrelu],
+    },
+    -1: {
+        type: convlstm,
+        cm: [convlstm, 1],
+        am: [groupnorm],
+    },
+  }
+
+
+fitness: 0.01
+final_fitness: 0.0
+fitness_history: []
