@@ -1,0 +1,55 @@
+evolution_config:
+  {
+    init_genotype: ./genotypes/convlstm_genotype.yaml,
+    output_file: convlstm-movingmnist-0607.txt,
+
+    generation_limit: 100,
+    genotype_number_init: 20,
+    genotype_number_limit: 50,
+
+    NpI_init: 1,
+    NpI_step: 1,
+    NpI_limit: 10,
+    TpG_init: 1,
+    TpG_step: 1,
+
+    organ_prob: [100],
+    add_cell_prob: 25,
+    modify_cell_prob: 50,
+    crossover_prob: 25,
+
+    conv_attr_prob: [40, 20, 20, 20],
+    conv_attr_growth_factor: [8, 2, 1, 1],
+    convlstm_attr_growth_factor: 2,
+
+    species_number_limit: 10,
+    species_number_limit_floor: 5,
+    compatibility_threshold: 1.0,
+    distance_coefficient: 1.0,
+  }
+
+
+train_config:
+  {
+    dataset: moving-mnist,
+    input_size: [10, 1, 64, 64],
+    fitness_threshold: 0.91000,
+    final_fitness_threshold: 0.92950,
+    train_device: 'cuda:0',
+    train_rate: 50,
+    train_epochs: 5,
+    full_train_epochs: 15,
+    train_batches: 25,
+    learning_rate: 0.0002,
+    loss_function: bce,
+    optimizer: adam,
+  }
+
+
+ann_config:
+  {
+    ann_type: lstm,
+    organ_types: [encoder],
+    encoder_cell_types: {conv: [[16, 1, 1, 0], [leakyrelu]],
+                         convlstm: [1, [groupnorm]]},
+  }

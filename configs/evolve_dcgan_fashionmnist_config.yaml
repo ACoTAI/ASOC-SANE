@@ -1,0 +1,57 @@
+evolution_config:
+  {
+    init_genotype: ./genotypes/dcgan_genotype.yaml,
+    output_file: dcgan-fashionmnist-0619.txt,
+
+    generation_limit: 100,
+    genotype_number_init: 20,
+    genotype_number_limit: 50,
+
+    NpI_init: 1,
+    NpI_step: 1,
+    NpI_limit: 10,
+    TpG_init: 1,
+    TpG_step: 1,
+
+    organ_prob: [50, 50],
+    add_cell_prob: 25,
+    modify_cell_prob: 50,
+    crossover_prob: 25,
+    conv_attr_prob: [40, 20, 20, 20],
+    conv_attr_growth_factor: [8, 2, 1, 1],
+    linear_attr_growth_factor: 32,
+    convtrans_attr_prob: [40, 20, 20, 20],
+    convtrans_attr_growth_factor: [8, 2, 1, 1],
+
+    species_number_limit: 10,
+    species_number_limit_floor: 5,
+    compatibility_threshold: 1.0,
+    distance_coefficient: 1.0,
+  }
+
+
+train_config:
+  {
+    dataset: fashion-mnist,
+    input_size: {'generator': [100, 1, 1], 'discriminator': [1, 28, 28]},
+    fitness_threshold: 456.8,
+    final_fitness_threshold: 471.45,
+    train_device: 'cuda:1',
+    train_rate: 50,
+    train_epochs: 10,
+    full_train_epochs: 190,
+    train_batches: 128,
+    learning_rate: 0.0002,
+    loss_function: bce,
+    optimizer: adam,
+  }
+
+
+ann_config:
+  {
+    ann_type: gan,
+    organ_types: [generator, discriminator],
+    generator_cell_types: {convtrans: [[32, 2, 1, 0], [batchnorm, relu]],},
+    discriminator_cell_types: {conv: [[32, 2, 1, 0], [batchnorm, leakyrelu]],},
+    init_mode: 2,
+  }

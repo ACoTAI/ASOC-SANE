@@ -1,0 +1,56 @@
+evolution_config:
+  {
+    init_genotype: ./genotypes/cnn_genotype.yaml,
+    output_file: alexnet-c10-0603-3.txt,
+
+    generation_limit: 100,
+    genotype_number_init: 20,
+    genotype_number_limit: 50,
+
+    NpI_init: 1,
+    NpI_step: 1,
+    NpI_limit: 10,
+    TpG_init: 1,
+    TpG_step: 1,
+
+    organ_prob: [60, 40],
+    add_cell_prob: 25,
+    modify_cell_prob: 50,
+    crossover_prob: 25,
+    conv_attr_prob: [40, 15, 15, 15, 15],
+    conv_attr_growth_factor: [8, 2, 2, 2],
+    linear_attr_growth_factor: 16,
+    trans_attr_growth_factor: [4, 1],
+
+    species_number_limit: 10,
+    species_number_limit_floor: 5,
+    compatibility_threshold: 1.0,
+    distance_coefficient: 1.0,
+  }
+
+
+train_config:
+  {
+    dataset: cifar10,
+    input_size: [ 3, 32, 32 ],
+    fitness_threshold:  65.37,
+    final_fitness_threshold: 75.56,
+    train_device: 'cuda:0',
+    train_rate: 50,
+    train_epochs: 10,
+    full_train_epochs: 250,
+    train_batches: 128,
+    learning_rate: 0.001,
+    loss_function: crossentropy,
+    optimizer: adam,.
+  }
+
+
+ann_config:
+  {
+    ann_type: cnn,
+    organ_types: [feature, classifier],
+    feature_cell_types: {conv: [[16, 3, 1, 0], [relu, maxpool]],},
+    classifier_cell_types: {linear: [32, [relu]],},
+    init_mode: 1,
+  }
